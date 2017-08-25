@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./homework.css">
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div class="thumb">
+        <div class="finesse">
+            <!-- 手腕 -->
+        </div>
+        <div class="palm">
+            <!-- 手掌 -->
+        </div>
+        <div class="big-finger">
+            <!-- 大拇指 -->
+        </div>
+        <div class="fingers">
+            <div class="finger">
+                <!-- other -->
+            </div>
+            <div class="finger">
+                <!-- other -->
+            </div>
+            <div class="finger">
+                <!-- other -->
+            </div>
+            <div class="finger">
+                <!-- other -->
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="./system.js"></script>
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script>
+SystemJS.import('./home.js').then(function(m) {
+    var thumb = new m.default;
+    $.fn.extend({
+        tips: function(){
+            return thumb.tipsBox();
+        }
+    })
+    $('.thumb').click(function() {
+        $(this).tips()
+    });
+})
+</script>
+
+</html>
