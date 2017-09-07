@@ -8,31 +8,33 @@ class PraiseButton {
 
     clickAction() {
         this.element.click(() => {
-                if (this.num < 10) {
-                    this.element.css('-webkit-filter', 'grayscale(0)');
-                    $('#animation').addClass('num');
-                    this.num = add(this.num);
-                    axios.get('http://127.0.0.1/2.php').then((response) => {
-                            console.log(response.data.msg);
-                        }); 
+            $.ajax({
+                url: "/index",
+                type: "post",
+                data: "{id:'1'}",
+                dataType: "json",
+                success: (res) => {
+                    console.log(res)
+                    if (res) {
+                        this.element.css('-webkit-filter', 'grayscale(0)');
+                        $('#animation').addClass('num');
+                        this.num = add(this.num);
                         setTimeout(function() {
                             $('#animation').removeClass('num');
                         }, 1000);
                     }
-                    else {
-                        this.element.css('-webkit-filter', 'grayscale(1)');
-                        this.num = 0;
-                    }
-                    console.log(this.num);
-                })
-        }
+                }
+            })
+
+        })
     }
+}
 
-    class Thumb extends PraiseButton {
-        constructor(num, element) {
-            super(num, element);
-        }
-    };
+class Thumb extends PraiseButton {
+    constructor(num, element) {
+        super(num, element);
+    }
+};
 
-    let f = new Thumb(0, $('#thumb'));
-    f.clickAction();
+let f = new Thumb(0, $('#thumb'));
+f.clickAction();
